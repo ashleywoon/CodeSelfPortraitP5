@@ -164,13 +164,6 @@ function draw() {
     sleepy();
   }
 
-  //interative effect
-  if(mouseIsPressed){
-    fill(r,b,g);
-    ellipse(mouseX-10, mouseY-10, 30,30);
-  }
-  scribbles();
-
 } //end of draw
 
 function sad() {
