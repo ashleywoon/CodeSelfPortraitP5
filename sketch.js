@@ -19,6 +19,7 @@ var rightX;
 var rightY;
 var tearLeft=320;
 var tearRight=320;
+var bubble=0;
 
 //color variables
 var skin;
@@ -26,8 +27,17 @@ var darkerSkin;
 var lips;
 var brows;
 var hair;
+var r=random(255,0,0);
+var g=random(0,255,0);
+var b=random(0,0,255);
+var pink;
+var black;
+var red;
+var blue;
+
 
 function setup() {
+  frameRate(5);
   createCanvas(1000,1000);
   state=stateHappy;
   skin=color(241, 205, 185);
@@ -35,6 +45,12 @@ function setup() {
   lips=color(231,135,135);
   brows=color(100,63,12);
   hair=color(148.75,6.8,30.6);
+
+  //background colors
+  pink=color(231,135,135);
+  black=color(44,52,144);
+  red=color(84.5,12,26);
+  blue=color(130,191,207);
 }
 
 function draw() {
@@ -43,14 +59,13 @@ function draw() {
 
   //background dependant on state; happy=pink, sad=black, sleepy=blue, angry=red
   if(state==stateHappy)
-    background(231,135,135);
+    background(pink);
   else if(state==stateSad)
-    background(44,52,144);
+    background(black); 
   else if(state==stateAngry)
-    //background(169,24,52);
-    background(84.5,12,26);
+    background(red);
   else if(state==stateSleepy)
-    background(130,191,207);
+    background(blue);
   noStroke();
   
   //hair
@@ -139,20 +154,24 @@ function draw() {
   quad(578,630, 500,750, 240,1000, 760,1000);
 
   //changing emotion
-  //stateSad
   if(state==stateSad) {
     sad();
   }
-  //stateAngry
   else if(state==stateAngry){
     angry();
   }
-  //stateSleepy
   else if(state==stateSleepy) {
     sleepy();
   }
+
+  //interative effect
+  if(mouseIsPressed){
+    fill(r,b,g);
+    ellipse(mouseX-10, mouseY-10, 30,30);
+  }
   scribbles();
-}
+
+} //end of draw
 
 function sad() {
   //lowered eyelids,
@@ -266,14 +285,6 @@ function sleepy() {
       fill(lips);
       arc(width/2, height/2.2, 45, 20, 0, TWO_PI);
     }
-}
-
-function scribbles() {
-  var scribble=random(5);
-  var sColor=random(0,255);
-  stroke(sColor);
-  strokeWeight(scribble);
-  line(pmouseX, pmouseY, mouseX, mouseY);
 }
 
 function keyPressed() {
