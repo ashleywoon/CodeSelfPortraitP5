@@ -27,9 +27,6 @@ var darkerSkin;
 var lips;
 var brows;
 var hair;
-var r=random(255,0,0);
-var g=random(0,255,0);
-var b=random(0,0,255);
 var pink;
 var black;
 var red;
@@ -37,7 +34,6 @@ var blue;
 
 
 function setup() {
-  frameRate(5);
   createCanvas(1000,1000);
   state=stateHappy;
   skin=color(241, 205, 185);
@@ -180,9 +176,9 @@ function sad() {
   leftX=433;
   rightX=554;
   fill(0,0,255);
-  for(var j=320; j<1000; j++) {
-    ellipse(leftX, tearLeft, 10,15);
-    ellipse(rightX, tearRight, 10,15);
+  for(var i=0; i<100; i++) {
+    ellipse(leftX, tearLeft, 10, 15);
+    ellipse(rightX, tearRight, 10, 15);
   }
   if(second()%2==0) {
     tearLeft=tearLeft+2;
@@ -192,6 +188,10 @@ function sad() {
     tearLeft=tearLeft+1;
     tearRight=tearRight+2;
   }
+  if(tearLeft>700)
+    tearLeft-=380;
+  if(tearRight>700)
+    tearRight-=380;
 }
 
 function angry() {
