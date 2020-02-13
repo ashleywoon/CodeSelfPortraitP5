@@ -32,7 +32,6 @@ var black;
 var red;
 var blue;
 
-
 function setup() {
   createCanvas(1000,1000);
   state=stateHappy;
@@ -64,21 +63,52 @@ function draw() {
     background(blue);
   noStroke();
   
+  drawFace();
+  drawAccessories();
+  drawShirt();
+
+  //changing emotion
+  if(state==stateSad) {
+    sad();
+  }
+  else if(state==stateAngry){
+    angry();
+  }
+  else if(state==stateSleepy) {
+    sleepy();
+  }
+
+} //end of draw
+
+function drawFace() {
   //hair
   fill(hair);
   ellipse(500,360, 500,600);
-  
+
   //neck
   fill(darkerSkin);
   rect(425,518, 150, 200);
   
   //ear
   ellipse(332,326, 55,90);
-  
+
   //face shape and coloring
   fill(skin);
   ellipse(width/2, height/3, width/3, height/2.4);
+
+  //nose
+  fill(175.5,150,135);
+  quad(505,350, 510,373, 500,384, 515,373);
   
+  //mouth
+  fill(lips);
+  arc(width/2, height/2.2, 90, 40, QUARTER_PI, PI);
+
+  drawEyes();
+  drawEyebrows();
+}
+
+function drawEyes() {
   //left eye, right eye
   stroke(0);
   strokeWeight(2);
@@ -99,21 +129,16 @@ function draw() {
   noStroke();
   ellipse(430,280, 10,10);
   ellipse(580,280, 10,10);
-  
-  //left and right eyebrow
+}
+
+function drawEyebrows() {
+    //left and right eyebrow
   fill(brows);
   quad(360,240, 389,224, 460,225, 465,239);
   quad(630,240, 600,224, 528,225, 520,239);
-  
-  //nose
-  fill(175.5,150,135);
-  quad(505,350, 510,373, 500,384, 515,373);
-  
-  //mouth
-  fill(lips);
-  arc(width/2, height/2.2, 90, 40, QUARTER_PI, PI);
+}
 
-  //accessories
+function drawAccessories() {
   //jade necklace
   stroke(255,234,0);
   strokeWeight(5);
@@ -140,27 +165,16 @@ function draw() {
   ellipse(325,401, 25,25);
   fill(123,12,165);
   ellipse(330,401, 25,25);
-  
-  //shirt
+}
+
+function drawShirt() {
   noStroke();
   quad(420,630, 260,720, 256,740, 240,1000);
   quad(578,630, 740,720, 746,740, 760,1000);
   //v-neck
   quad(420,630, 500,750, 760,1000, 240,1000);
   quad(578,630, 500,750, 240,1000, 760,1000);
-
-  //changing emotion
-  if(state==stateSad) {
-    sad();
-  }
-  else if(state==stateAngry){
-    angry();
-  }
-  else if(state==stateSleepy) {
-    sleepy();
-  }
-
-} //end of draw
+}
 
 function sad() {
   //lowered eyelids,
